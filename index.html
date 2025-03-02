@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>المنصة التعليمية</title>
+    <style>
+        /* تصميم الخلفية */
+        body {
+            font-family: Arial, sans-serif;
+            background: url('https://source.unsplash.com/1600x900/?education,technology') no-repeat center center/cover;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+            color: white;
+            position: relative;
+        }
+
+        /* تأثير شفاف فوق الخلفية لتحسين وضوح النص */
+        .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 0;
+        }
+
+        #courses {
+            position: relative;
+            z-index: 1;
+            padding: 50px;
+        }
+
+        h2 {
+            color: #fff;
+            font-size: 2rem;
+            margin-bottom: 20px;
+        }
+
+        /* أزرار التحكم */
+        .action-buttons {
+            margin-bottom: 20px;
+        }
+
+        .action-buttons button {
+            background: #28a745;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            margin: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: 0.3s;
+            font-size: 1rem;
+        }
+
+        .action-buttons button:hover {
+            background: #218838;
+        }
+
+        /* حاوية الدورات */
+        .courses-container {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        /* تصميم البطاقة */
+        .course {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s, box-shadow 0.3s;
+            width: 300px;
+            text-align: center;
+            color: #333;
+        }
+
+        .course:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.25);
+        }
+
+        .course h3 {
+            color: #007BFF;
+            font-size: 1.4rem;
+        }
+
+        .enroll-btn {
+            background: #007BFF;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: 0.3s;
+            font-size: 1rem;
+        }
+
+        .enroll-btn:hover {
+            background: #0056b3;
+        }
+
+        /* مرحلة التقدم */
+        .progress-container {
+            margin-top: 30px;
+            text-align: center;
+        }
+
+        .progress-bar {
+            width: 80%;
+            background-color: #ddd;
+            border-radius: 20px;
+            margin: auto;
+            overflow: hidden;
+        }
+
+        .progress {
+            width: 40%; /* يمكن تغييره حسب مستوى التقدم */
+            height: 20px;
+            background: #28a745;
+            border-radius: 20px;
+            text-align: center;
+            color: white;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+<div class="overlay"></div> <!-- طبقة شفافة فوق الخلفية -->
+
+<section id="courses">
+    <h2>📚 الدورات المتاحة</h2>
+
+    <!-- أزرار التحكم -->
+    <div class="action-buttons">
+        <button onclick="loginWithEmail()">📧 تسجيل الدخول بالبريد الإلكتروني</button>
+        <button onclick="openStudentChat()">💬 دردشة بين الطلاب</button>
+        <button onclick="openTeacherChat()">👨‍🏫 دردشة بين الطلاب والمعلمين</button>
+        <button onclick="startExam()">📝 الاختبارات</button>
+    </div>
+
+    <div class="courses-container">
+        <div class="course">
+            <h3>💻 دورة تعلم البرمجة</h3>
+            <p>ابدأ رحلتك في تعلم البرمجة من الصفر.</p>
+            <button class="enroll-btn" onclick="enrollCourse('غير متاحة حاليا')">سجل الآن</button>
+        </div>
+        <div class="course">
+            <h3>🤖 دورة تعلم الروبوتات باستخدام الأردوينو</h3>
+            <p>تعلم أساسيات الأردوينو والتحكم بالروبوتات.</p>
+            <button class="enroll-btn" onclick="enrollCourse('دورة تعلم استخدام الأردوينو')">سجل الآن</button>
+        </div>
+    </div>
+
+    <!-- مرحلة التقدم -->
+    <div class="progress-container">
+        <h2>📊 تقدمك في الدورة</h2>
+        <div class="progress-bar">
+            <div class="progress" id="progress">40%</div>
+        </div>
+    </div>
+</section>
+
+<script>
+    function enrollCourse(courseName) {
+        let confirmation = confirm(`هل تريد التسجيل في ${courseName}؟`);
+        if (confirmation) {
+            alert(`🎉 تم تسجيلك بنجاح في ${courseName}!\n🎯 استمتع بالتعلم.`);
+        }
+    }
+
+    function loginWithEmail() {
+        let email = prompt("📧 أدخل بريدك الإلكتروني لتسجيل الدخول:");
+        if (email) {
+            alert(`✅ تم تسجيل الدخول بنجاح بالبريد الإلكتروني: ${email}`);
+        }
+    }
+
+    function openStudentChat() {
+        alert("💬 سيتم توجيهك إلى دردشة الطلاب قريبًا...");
+        // يمكنك استبدال هذا بـ window.location.href = "student-chat.html";
+    }
+
+    function openTeacherChat() {
+        alert("👨‍🏫 سيتم توجيهك إلى دردشة المعلمين قريبًا...");
+        // يمكنك استبدال هذا بـ window.location.href = "teacher-chat.html";
+    }
+
+    function startExam() {
+        alert("📝 سيتم توجيهك إلى صفحة الاختبارات قريبًا...");
+        // يمكنك استبدال هذا بـ window.location.href = "exam.html";
+    }
+
+    // تحديث شريط التقدم بناءً على تقدم الطالب (يمكن ربطه بقاعدة بيانات)
+    function updateProgress(percentage) {
+        let progressBar = document.getElementById("progress");
+        progressBar.style.width = percentage + "%";
+        progressBar.innerText = percentage + "%";
+    }
+
+    // مثال: تحديث التقدم إلى 70% بعد 3 ثواني (يمكن استبداله ببيانات حقيقية)
+    setTimeout(() => {
+        updateProgress(70);
+    }, 3000);
+</script>
+
+</body>
+</html>
